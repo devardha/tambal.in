@@ -12,22 +12,29 @@ export default function Nav(){
 
 const Wrapper = styled.nav`
     width:100%;
-    height:60px;
     color:var(--primary);
     display:flex;
     align-items:center;
     justify-content:center;
+    padding-top:1rem;
+    padding-bottom:1rem;
     padding-left:1.25rem;
     padding-right:1.25rem;
     border-bottom:1px solid #f9f9f9;
 
     h1{
-        font-size:1.25rem;
+        font-size:1.3rem;
         margin:0;
         font-family: 'Leckerli One', cursive;
 
         span{
             color:#000;
+        }
+    }
+
+    @media(min-width:480px){
+        h1{
+            font-size:1.4rem;
         }
     }
 `

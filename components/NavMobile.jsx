@@ -1,19 +1,18 @@
 import styled from '@emotion/styled'
 import { useContext } from 'react'
 import { DetailContext } from '../context/DetailContext'
+import { RiCloseCircleFill } from 'react-icons/ri'
 
 export default function NavMobile(){
     const [detail, setDetail] = useContext(DetailContext)
 
-    console.log(detail)
-
     return(
         <Wrapper isOpen={detail}>
             <div className="infos">
-                <span className="close" onClick={() => setDetail(false)}>✕</span>
+                <span className="close" onClick={() => setDetail(false)}><RiCloseCircleFill/></span>
                 <div className="col">
                     <div className="info-detail nama-jalan">Jl. Dempel Mukti 1</div>
-                    <div className="info-detail deskripsi">Pertigaan pertama belok kanan, tempatnya ada di kiri jalan.</div>
+                    <p className="info-detail deskripsi">Pertigaan pertama belok kanan, tempatnya ada di kiri jalan.</p>
                     
                 </div>
             </div>
@@ -43,21 +42,18 @@ const Wrapper = styled.div`
         position:relative;
 
         .close{
-            font-size: 1.2rem;
-            padding: .5rem .7rem;
-            color: #fff;
-            background: #111;
+            font-size: 2.5rem;
             z-index: 2;
             display: flex;
             position: absolute;
+            color:#111;
             border-radius: 50%;
             right: 1rem;
-            top: -1rem;
-            box-shadow:0 2px 14px rgba(0, 0, 0, 0.1);
+            top: -1.2rem;
             cursor: pointer;
 
             &:hover{
-                background:#191919;
+                color:#222;
             }
         }
 

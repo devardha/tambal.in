@@ -14,17 +14,17 @@ export default function CardList(){
                 <span><FaSearch/></span>
             </div>
             <ul>
-                <li onClick={() => setDetail(true)}>
+                <li onClick={() => setDetail(!detail)}>
                     <div className="image">
                         <img src="https://cf.bstatic.com/images/hotel/max1024x768/163/163953544.jpg" alt=""/>
                     </div>
                     <div className="details">
                         <span className="title">Jl. Dempel Mukti 1</span>
                         <span className="desc">Pertigaan pertama belok kanan, tempatnya ada</span>
-                        <div className="place-info">
+                        {/* <div className="place-info">
                             <span className="rate"><HiStar/></span>
                             <span className="countrate">4 Reviews</span>
-                        </div>
+                        </div> */}
                     </div>
                 </li>
             </ul>
@@ -36,6 +36,10 @@ const Wrapper = styled.div`
     width:100%;
     margin-top:2rem;
 
+    .active{
+        color:#ff585d;
+    }
+
     .input-wrapper{
         position:relative;
         display:flex;
@@ -44,12 +48,12 @@ const Wrapper = styled.div`
         input{
             width: 100%;
             border: 0;
-            padding: .75rem 1.5rem;
+            padding: 1rem 1.5rem;
             border-radius: 4rem;
             box-shadow:0 2px 12px rgba(0, 0, 0, 0.075);
 
             &::placeholder{
-                color:#222;
+                color:#777;
                 font-family:'Montserrat';
             }
 
@@ -82,7 +86,7 @@ const Wrapper = styled.div`
             transition:.2s;
 
             .image{
-                height:auto;
+                height:110px;
                 display:block;
                 width:35%;
                 background:#fafafa;
@@ -101,7 +105,6 @@ const Wrapper = styled.div`
                 display:flex;
                 flex-direction:column;
                 padding:0 1rem;
-                justify-content:space-between;
 
                 .title{
                     font-weight:bold;
@@ -111,6 +114,17 @@ const Wrapper = styled.div`
                 .desc{
                     font-size:.75rem;
                     margin-top:.5rem;
+                    line-height:1.5;
+                }
+
+                @media(min-width:480px){
+                    .title{
+                        font-size:1rem;
+                    }
+                    .desc{
+                        font-size:.8rem;
+                        line-height:1.6;
+                    }
                 }
 
                 .place-info{

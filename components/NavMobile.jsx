@@ -13,7 +13,6 @@ export default function NavMobile(){
                 <div className="col">
                     <div className="info-detail nama-jalan">Jl. Dempel Mukti 1</div>
                     <p className="info-detail deskripsi">Pertigaan pertama belok kanan, tempatnya ada di kiri jalan.</p>
-                    
                 </div>
             </div>
             <button>Open in Google Map</button>
@@ -23,6 +22,7 @@ export default function NavMobile(){
 
 const Wrapper = styled.div`
     width:100%;
+    max-width:512px;
     height:200px;
     background:#fff;
     box-shadow:var(--shadow-medium);

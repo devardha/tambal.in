@@ -1,16 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
+
+:root{
+    --primary: #1030e7;
+    --primary-dark: #1939ee;
+    --shadow-soft: 0 6px 16px rgb(0,0,0,0.03);
+    --shadow-medium: 0 -6px 20px rgb(0,0,0,0.05);
+    --shadow-hard:0 6px 16px rgb(0,0,0,0.075);
+    --shadow-dark:'';
+}
+
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-weight: 300;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+button{
+    padding: .75rem !important;
+    border: transparent;
+    transition: .2s;
+    cursor: pointer;
+    font-size: .9rem;
 }

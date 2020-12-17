@@ -1,12 +1,18 @@
 import styled from '@emotion/styled'
 import { useContext } from 'react'
 import { DetailContext } from '../context/DetailContext'
+import { HiStar } from 'react-icons/hi'
+import { FaSearch } from 'react-icons/fa'
 
 export default function CardList(){
     const [detail, setDetail] = useContext(DetailContext)
 
     return(
         <Wrapper>
+            <div className="input-wrapper">
+                <input type="text" placeholder="Lagi dimana?"/>
+                <span><FaSearch/></span>
+            </div>
             <ul>
                 <li onClick={() => setDetail(true)}>
                     <div className="image">
@@ -14,9 +20,10 @@ export default function CardList(){
                     </div>
                     <div className="details">
                         <span className="title">Jl. Dempel Mukti 1</span>
-                        <span className="desc">Pertigaan pertama belom kanan, tempatnya ada</span>
+                        <span className="desc">Pertigaan pertama belok kanan, tempatnya ada</span>
                         <div className="place-info">
-                            <span className="distance">3km</span>
+                            <span className="rate"><HiStar/></span>
+                            <span className="countrate">4 Reviews</span>
                         </div>
                     </div>
                 </li>
@@ -27,27 +34,52 @@ export default function CardList(){
 
 const Wrapper = styled.div`
     width:100%;
+    margin-top:2rem;
+
+    .input-wrapper{
+        position:relative;
+        display:flex;
+        align-items:center;
+
+        input{
+            width: 100%;
+            border: 0;
+            padding: .75rem 1.5rem;
+            border-radius: 4rem;
+            box-shadow:0 2px 12px rgba(0, 0, 0, 0.075);
+
+            &::placeholder{
+                color:#222;
+                font-family:'Montserrat';
+            }
+
+            &:focus{
+                box-shadow:0 2px 14px rgba(0, 0, 0, 0.1);
+            }
+        }
+        span{
+            position: absolute;
+            right: 1.5rem;
+            transform: translateY(2px);
+            color: #ff585d;
+        }
+    }
 
     ul{
         padding:0;
         margin:0;
-        margin-top:40px;
+        margin-top:1.5rem;
         display:flex;
         flex-direction:column;
 
         li{
             display:flex;
             border-radius:.5rem;
-            box-shadow:var(--shadow-soft);
             background-color:#fff;
             width:100%;
             margin-bottom:1rem;
             cursor: pointer;
             transition:.2s;
-
-            &:hover{
-                box-shadow:var(--shadow-hard);
-            }
 
             .image{
                 height:auto;
@@ -68,29 +100,30 @@ const Wrapper = styled.div`
                 width:65%;
                 display:flex;
                 flex-direction:column;
-                padding:1rem;
+                padding:0 1rem;
+                justify-content:space-between;
 
                 .title{
                     font-weight:bold;
-                    font-size:.8rem;
-                    margin-bottom:.5rem;
+                    font-size:.9rem;
                 }
 
                 .desc{
                     font-size:.75rem;
-                    color:#666;
+                    margin-top:.5rem;
                 }
 
                 .place-info{
                     margin-top:.5rem;
                     display:flex;
-                    justify-content:space-between;
                     align-items:center;
+                    font-size:.75rem;
 
-                    .distance{
-                        font-weight:bold;
-                        font-size:.8rem;
-                        color:var(--primary);
+                    .rate{
+                        font-size:.9rem;
+                        transform: translateY(2px);
+                        margin-right: 4px;
+                        color: #ff585d;
                     }
                 }
             }

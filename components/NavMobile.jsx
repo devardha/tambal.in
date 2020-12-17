@@ -14,7 +14,7 @@ export default function NavMobile(){
                 <div className="col">
                     <div className="info-detail nama-jalan">Jl. Dempel Mukti 1</div>
                     <div className="info-detail deskripsi">Pertigaan pertama belok kanan, tempatnya ada di kiri jalan.</div>
-                    <div className="info-detail kodepos">50197</div>
+                    
                 </div>
             </div>
             <button>Open in Google Map</button>
@@ -46,7 +46,7 @@ const Wrapper = styled.div`
             font-size: 1.2rem;
             padding: .5rem .7rem;
             color: #fff;
-            background: var(--primary);
+            background: #111;
             z-index: 2;
             display: flex;
             position: absolute;
@@ -57,7 +57,7 @@ const Wrapper = styled.div`
             cursor: pointer;
 
             &:hover{
-                background:var(--primary-dark);
+                background:#191919;
             }
         }
 
@@ -71,9 +71,6 @@ const Wrapper = styled.div`
             }
             .nama-jalan{
                 font-weight:bold;
-            }
-            .deskripsi, .kodepos{
-                color:#666;
             }
         }
     }

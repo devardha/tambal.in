@@ -16,11 +16,10 @@ const Wrapper = styled.nav`
     display:flex;
     align-items:center;
     justify-content:center;
-    padding-top:1rem;
+    padding-top:1.5rem;
     padding-bottom:1rem;
     padding-left:1.25rem;
     padding-right:1.25rem;
-    border-bottom:1px solid #f9f9f9;
 
     h1{
         font-size:1.3rem;
@@ -34,7 +33,7 @@ const Wrapper = styled.nav`
 
     @media(min-width:480px){
         h1{
-            font-size:1.4rem;
+            font-size:1.5rem;
         }
     }
 `

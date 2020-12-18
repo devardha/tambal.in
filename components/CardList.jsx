@@ -5,17 +5,31 @@ import { HiStar } from 'react-icons/hi'
 import { FaSearch } from 'react-icons/fa'
 import axios from 'axios'
 import { useEffect } from 'react'
+import ListSkeleton from './ListSkeleton'
 
 export default function CardList(){
     const [detail, setDetail] = useContext(DetailContext)
+    const [loading, setLoading] = useState(false)
     const [list, setList] = useState()
+
+    const limitCharacter = (text, count) => {
+        if(!text){
+            return ''
+        }else{
+            return text.slice(0, count) + (text.length > count ? "..." : "");
+        }
+    }
 
     useEffect(() => {
         async function fetchData(){
+            setLoading(true)
             const { data } = await axios.get("/api/tambalban")
 
             if(data){
                 setList(data)
+                setLoading(false)
+            }else{
+                setLoading(false)
             }
         }
         fetchData()
@@ -29,8 +43,15 @@ export default function CardList(){
             </div>
             <ul>
                 {
-                    list ? (
-                        list.map((item, index) => {
+                    !list || loading ? (
+                        <>
+                        <ListSkeleton/>
+                        <ListSkeleton/>
+                        <ListSkeleton/>
+                        <ListSkeleton/>
+                        </>
+                    ) : (
+                        list?.map((item, index) => {
                             return(
                                 <li key={index} onClick={() => setDetail(detail ? null : item)}>
                                     <div className="image">
@@ -38,16 +59,13 @@ export default function CardList(){
                                     </div>
                                     <div className="details">
                                         <span className="title">{item.address}</span>
-                                        <span className="desc">{item.description}</span>
-                                        {/* <div className="place-info">
-                                            <span className="rate"><HiStar/></span>
-                                            <span className="countrate">4 Reviews</span>
-                                        </div> */}
+                                        <span className="address">{ item.location.completeAddress?.road + ", " + item.location.completeAddress?.sub_district + ", " + item.location.completeAddress?.city}</span>
+                                        <span className="desc">{limitCharacter(item.description, 80)}</span>
                                     </div>
                                 </li>
                             )
                         })
-                    ) : ''
+                    )
                 }
             </ul>
         </Wrapper>
@@ -111,7 +129,7 @@ const Wrapper = styled.div`
                 height:110px;
                 display:block;
                 width:35%;
-                background:#fafafa;
+                background:#f4f4f4;
                 border-radius:.5rem 0 0 .5rem;
                 position:relative;
 
@@ -128,6 +146,14 @@ const Wrapper = styled.div`
                 flex-direction:column;
                 padding:0 1rem;
 
+                .address{
+                    font-size:.7rem;
+                    line-height:1.4;
+                    margin-top:4px;
+                    color:#ff585d;
+                    font-weight:500;
+                }
+
                 .title{
                     font-weight:bold;
                     font-size:.9rem;
@@ -135,7 +161,7 @@ const Wrapper = styled.div`
 
                 .desc{
                     font-size:.75rem;
-                    margin-top:.5rem;
+                    margin-top:4px;
                     line-height:1.5;
                 }
 
@@ -146,20 +172,6 @@ const Wrapper = styled.div`
                     .desc{
                         font-size:.8rem;
                         line-height:1.6;
-                    }
-                }
-
-                .place-info{
-                    margin-top:.5rem;
-                    display:flex;
-                    align-items:center;
-                    font-size:.75rem;
-
-                    .rate{
-                        font-size:.9rem;
-                        transform: translateY(2px);
-                        margin-right: 4px;
-                        color: #ff585d;
                     }
                 }
             }

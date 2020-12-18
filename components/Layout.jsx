@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import Nav from './Nav'
 import NavMobile from './NavMobile'
+import Footer from './Footer'
 
 export default function Layout({ children }){
     return(
@@ -18,6 +19,7 @@ export default function Layout({ children }){
                 </div>
                 <NavMobile/>
             </Wrapper>
+            <Footer/>
         </>
     )
 }

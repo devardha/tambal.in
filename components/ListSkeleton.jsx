@@ -24,6 +24,7 @@ const Wrapper = styled.li`
         height: 20px;
         background: #f4f4f4;
         border-radius: 3rem;
+        margin-bottom:10px;
     }
     .desc-skeleton{
         height: 14px;

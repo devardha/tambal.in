@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { RiMapPinAddFill, RiMapPinUserFill } from 'react-icons/ri'
+import { RiMapPinAddFill } from 'react-icons/ri'
 
 export default function Nav(){
     return(
@@ -22,7 +22,7 @@ const Wrapper = styled.nav`
     padding-right:1.25rem;
 
     h1{
-        font-size:1.3rem;
+        font-size:1.4rem;
         margin:0;
         font-family: 'Leckerli One', cursive;
 

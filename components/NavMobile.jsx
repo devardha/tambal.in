@@ -24,7 +24,7 @@ export default function NavMobile(){
 
 const Wrapper = styled.div`
     width:100%;
-    max-width:512px;
+    max-width:1024px;
     height:200px;
     background:#fff;
     box-shadow:var(--shadow-medium);

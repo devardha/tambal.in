@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useContext, useState } from 'react'
 import { DetailContext } from '../context/DetailContext'
-import { HiStar } from 'react-icons/hi'
+import { RiMapPinAddFill } from 'react-icons/ri'
 import { FaSearch } from 'react-icons/fa'
 import axios from 'axios'
 import { useEffect } from 'react'
@@ -59,7 +59,7 @@ export default function CardList(){
                                     </div>
                                     <div className="details">
                                         <span className="title">{item.address}</span>
-                                        <span className="address">{ item.location.completeAddress?.road + ", " + item.location.completeAddress?.sub_district + ", " + item.location.completeAddress?.city}</span>
+                                        <span className="address"><i><RiMapPinAddFill/></i>{ item.location.completeAddress?.road + ", " + item.location.completeAddress?.sub_district + ", " + item.location.completeAddress?.city}</span>
                                         <span className="desc">{limitCharacter(item.description, 80)}</span>
                                     </div>
                                 </li>
@@ -116,6 +116,11 @@ const Wrapper = styled.div`
         display:flex;
         flex-direction:column;
 
+        @media(min-width:600px){
+            flex-direction:row;
+            flex-wrap:wrap;
+        }
+
         li{
             display:flex;
             border-radius:.5rem;
@@ -125,8 +130,12 @@ const Wrapper = styled.div`
             cursor: pointer;
             transition:.2s;
 
+            @media(min-width:800px){
+                width:50%;
+            }
+
             .image{
-                height:110px;
+                height:120px;
                 display:block;
                 width:35%;
                 background:#f4f4f4;
@@ -163,6 +172,10 @@ const Wrapper = styled.div`
                     font-size:.75rem;
                     margin-top:4px;
                     line-height:1.5;
+                }
+
+                i{
+                    margin-right:4px;
                 }
 
                 @media(min-width:480px){

@@ -1,9 +1,9 @@
+import styled from '@emotion/styled'
 import { useState } from 'react'
 import { v4 } from 'uuid'
 import { storage } from '../utils/firebase'
-import styled from '@emotion/styled'
 
-export default function AddTambalban(){
+export default function AddForm() {
     const [imageFile, setImageFile] = useState()
     const [imageUrl, setImageUrl] = useState()
     const [ uploadLoading, setUploadLoading] = useState(false)
@@ -67,14 +67,14 @@ export default function AddTambalban(){
                         type: "Point",
                     },
                 }
+
+                console.log(url)
             })
         })
     }
 
-    return(
+    return (
         <Wrapper>
-        <div className="container">
-            <img src="https://www.dporganizer.com/wp-content/uploads/2018/05/18163329/0006_illustration_data_mapping.png" alt=""/>
             <form onSubmit={handleUpload}>
                 <label htmlFor="alamat">Alamat</label>
                 <input type="text" name="alamat" placeholder="Alamat"/>
@@ -88,41 +88,23 @@ export default function AddTambalban(){
                         <input type="file" name="myfile" onChange={handleImageAsFile}/>
                     </div>
                 </div>
-                <button type="submit" className="bg-black">Petakan Lokasi</button>
+                <button type="submit">Petakan Lokasi</button>
             </form>
-        </div>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.div`
-    .container{
-        justify-content:center;
-        align-items:center;
-        flex-direction:column;
-        display:flex;
-
-        img{
-            width: 300px;
-        }
-    }
+    width:100%;
+    margin-top:2rem;
 
     form{
         display: flex;
         flex-direction: column;
-        width: 320px;
-
-        button.bg-black{
-            color: #fff;
-            background: #000;
-
-            &:hover{
-                background:#111;
-            }
-        }
+        width:100%;
 
         label{
-            color:rgba(113,128,150,1);
+            color:#555;
             font-weight: 600;
             margin-top: .75rem;
             font-size: .75rem;
@@ -132,58 +114,70 @@ const Wrapper = styled.div`
             margin-top: .5rem;
             padding: 0.75rem;;
             border-radius: 0;
-            border: 1px solid #eee;
+            border: 1px solid #ddd;
             transition: .2s;
             background-color: #fff;
 
             &::placeholder{
-                color:#8693a1;
+                color:#777;
+                font-family:'Montserrat';
             }
 
             &:focus{
-                border-color: #ccc;
+                border-color: #bbb;
             }
         }
 
         button{
             margin-top: 1rem;
-        }
-    }
-
-    .dropimage-area{
-        width:100%;
-        height:100px;
-        padding: var(--size-3);
-        border: 2px dashed rgb(197, 205, 212);
-        transition: .2s;
-        margin-top: .5rem;
-        margin-bottom: .5rem;
-        display: flex;
-        align-items: center;
-        margin-bottom: 2rem;
-        position: relative;
-        flex-direction: column;
-
-        span{
-            font-size: .8rem;
-            color: #8e9fb0;
-            position: absolute;
-            top: 20px;
+            background-color:#111;
+            color:#fff;
         }
 
-        button{
-            margin: 0 auto;
-            background: #4300f2;
-            color: #fff;
-        }
-    }
+        .dropimage-area{
+            width:100%;
+            height:100px;
+            border: 2px dashed#ddd;
+            transition: .2s;
+            margin-top: .5rem;
+            margin-bottom: .5rem;
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+            flex-direction: column;
+            justify-content:flex-end;
 
-    input[type=file] {
-        position: absolute;
-        left: 27%;
-        bottom: -20px;
-        opacity: 0;
-        width: 150px;
-        cursor: pointer;
+            span{
+                font-size: .8rem;
+                color: #777;
+                position: absolute;
+                top: 20px;
+            }
+
+            button{
+                margin: 0 auto;
+                width:100%;
+                background: #ff585d;
+                color: #fff;
+            }
+
+            .button-wrapper{
+                width:40%;
+                margin:0 auto;
+                position:relative;
+                transform:translateY(20px);
+
+                input[type=file] {
+                    position: absolute;
+                    width: 100%;
+                    cursor: pointer;
+                    left: 0;
+                    height: 100%;
+                    bottom: 0;
+                    opacity: 0;
+                }
+            }
+        }
     }
 `

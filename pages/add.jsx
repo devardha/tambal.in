@@ -1,17 +1,17 @@
 import Head from 'next/head'
 import styled from '@emotion/styled'
-import CardList from '../components/CardList'
 import Layout from '../components/Layout'
+import AddForm from '../components/AddForm'
 
-export default function Home() {
+export default function Add() {
     return (
         <Wrapper>
             <Head>
-                <title>Tambal.in - Cari tempat tambal ban terdekat dengan mudah</title>
+                <title>Petakan Lokasi - Tambal.in</title>
                 <meta name="description" content="Cari tempat tambal ban di dekatmu dengan mudah"/>
             </Head>
             <Layout>
-                <CardList/>
+                <AddForm/>
             </Layout>
         </Wrapper>
     )

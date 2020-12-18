@@ -4,13 +4,21 @@ import NavMobile from './NavMobile'
 
 export default function Layout({ children }){
     return(
-        <Wrapper>
-            <Nav/>
-            <div className="container">
-                {children}
+        <>
+            <a href="https://github.com/devardha" target="_blank">
+            <div className="github-badge">
+                <img src="https://sentiment-sweep.com/images/github-corner.png" alt="Github devardha"/>
             </div>
-            <NavMobile/>
-        </Wrapper>
+            </a>
+            <Wrapper>
+                <Nav/>
+                
+                <div className="container">
+                    {children}
+                </div>
+                <NavMobile/>
+            </Wrapper>
+        </>
     )
 }
 

@@ -7,16 +7,18 @@ export default function NavMobile(){
     const [detail, setDetail] = useContext(DetailContext)
 
     return(
+        <>
         <Wrapper isOpen={detail}>
             <div className="infos">
-                <span className="close" onClick={() => setDetail(false)}><RiCloseCircleFill/></span>
+                <span className="close" onClick={() => setDetail(null)}><RiCloseCircleFill/></span>
                 <div className="col">
-                    <div className="info-detail nama-jalan">Jl. Dempel Mukti 1</div>
-                    <p className="info-detail deskripsi">Pertigaan pertama belok kanan, tempatnya ada di kiri jalan.</p>
+                    <div className="info-detail nama-jalan">{detail?.address}</div>
+                    <p className="info-detail deskripsi">{detail?.description}</p>
                 </div>
             </div>
-            <button>Open in Google Map</button>
+            <a target="_blank" href={`https://maps.google.com/?q=${detail?.location.coordinates[1]},${detail?.location.coordinates[0]}`}><button>Open in Google Map</button></a>
         </Wrapper>
+        </>
     )
 }
 

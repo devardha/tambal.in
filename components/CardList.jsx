@@ -1,11 +1,25 @@
 import styled from '@emotion/styled'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { DetailContext } from '../context/DetailContext'
 import { HiStar } from 'react-icons/hi'
 import { FaSearch } from 'react-icons/fa'
+import axios from 'axios'
+import { useEffect } from 'react'
 
 export default function CardList(){
     const [detail, setDetail] = useContext(DetailContext)
+    const [list, setList] = useState()
+
+    useEffect(() => {
+        async function fetchData(){
+            const { data } = await axios.get("/api/tambalban")
+
+            if(data){
+                setList(data)
+            }
+        }
+        fetchData()
+    }, [])
 
     return(
         <Wrapper>
@@ -14,19 +28,27 @@ export default function CardList(){
                 <span><FaSearch/></span>
             </div>
             <ul>
-                <li onClick={() => setDetail(!detail)}>
-                    <div className="image">
-                        <img src="https://cf.bstatic.com/images/hotel/max1024x768/163/163953544.jpg" alt=""/>
-                    </div>
-                    <div className="details">
-                        <span className="title">Jl. Dempel Mukti 1</span>
-                        <span className="desc">Pertigaan pertama belok kanan, tempatnya ada</span>
-                        {/* <div className="place-info">
-                            <span className="rate"><HiStar/></span>
-                            <span className="countrate">4 Reviews</span>
-                        </div> */}
-                    </div>
-                </li>
+                {
+                    list ? (
+                        list.map((item, index) => {
+                            return(
+                                <li key={index} onClick={() => setDetail(detail ? null : item)}>
+                                    <div className="image">
+                                        <img src={item.picture}/>
+                                    </div>
+                                    <div className="details">
+                                        <span className="title">{item.address}</span>
+                                        <span className="desc">{item.description}</span>
+                                        {/* <div className="place-info">
+                                            <span className="rate"><HiStar/></span>
+                                            <span className="countrate">4 Reviews</span>
+                                        </div> */}
+                                    </div>
+                                </li>
+                            )
+                        })
+                    ) : ''
+                }
             </ul>
         </Wrapper>
     )
@@ -58,7 +80,7 @@ const Wrapper = styled.div`
             }
 
             &:focus{
-                box-shadow:0 2px 14px rgba(0, 0, 0, 0.1);
+                box-shadow:0 2px 14px rgba(0, 0, 0, 0.15);
             }
         }
         span{

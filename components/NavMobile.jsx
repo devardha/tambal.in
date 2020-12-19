@@ -24,10 +24,9 @@ export default function NavMobile(){
 
 const Wrapper = styled.div`
     width:100%;
-    max-width:1024px;
     height:200px;
     background:#fff;
-    box-shadow:var(--shadow-medium);
+    box-shadow:0 -6px 20px rgb(0,0,0,0.1);
     position:fixed;
     z-index:1;
     bottom:${props => props.isOpen ? '0' : '-220px'};
@@ -37,6 +36,10 @@ const Wrapper = styled.div`
     flex-direction:column;
     justify-content:space-between;
     transition:.2s ease-in-out;
+
+    @media(min-width:800px){
+        padding:0 80px;
+    }
 
     .infos{
         display:flex;
@@ -66,9 +69,17 @@ const Wrapper = styled.div`
 
             .info-detail{
                 margin-bottom:.5rem;
+
+                @media(min-width:800px){
+                    font-size:.9rem;
+                }
             }
             .nama-jalan{
                 font-weight:bold;
+
+                @media(min-width:800px){
+                    font-size:1rem;
+                }
             }
         }
     }

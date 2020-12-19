@@ -208,7 +208,8 @@ const Wrapper = styled.div`
                 margin-left:.5rem;
                 cursor: pointer;
                 font-size:.9rem;
-                display:ruby;
+                display:block;
+                min-width: 121px;
             }
         }
 

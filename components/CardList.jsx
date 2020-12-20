@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import ListSkeleton from './ListSkeleton'
 import { AiFillPicture } from 'react-icons/ai'
+import { RiRoadMapLine } from 'react-icons/ri'
 
 export default function CardList(){
     const [detail, setDetail] = useContext(DetailContext)
@@ -15,6 +16,7 @@ export default function CardList(){
     const [myCoor, setMyCoor] = useState()
     const [nearActive, setNearActive] = useState(false)
     const [loadingNew, setLoadingNew] = useState(false)
+    const mapactive = false
 
     const searchTambalban = async (e) => {
         e.preventDefault()
@@ -85,12 +87,24 @@ export default function CardList(){
         fetchData()
     }, [])
 
+    const apiKey = process.env.NEXT_PUBLIC_GEOLOCATION
+
+    const makeQuery = () => {
+        let queryWrapper = ""
+        const marker = "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png"
+
+        list?.map(item => {
+            const baseQuery = `&markers=icon:${marker}|${item.location.coordinates[1]},${item.location.coordinates[0]}`
+            queryWrapper = queryWrapper + baseQuery
+        })
+        // return queryWrapper
+        return `https://maps.locationiq.com/v2/staticmap?key=${apiKey}&center=-6.9725342,110.4581955&zoom=18&size=1920x1080&format=png&maptype=roadmap${queryWrapper}`
+    }
+
     return(
         <Wrapper>
-            {/* <div className="input-wrapper">
-                <input type="text" placeholder="Lagi dimana?"/>
-                <span><FaSearch/></span>
-            </div> */}
+            <div className="body">
+            <div className="body-left">
             <div className="head">
                 <form className="search-bar" onSubmit={searchTambalban}>
                     <input name="query" type="text" placeholder="Lagi dimana?"/>
@@ -143,6 +157,11 @@ export default function CardList(){
                     </div>
                 )
             }
+            </div>
+            <div className="body-right">
+                { mapactive && list ? <img src={makeQuery()}/> : <span className="nomap-msg">Sorry, Map location is not available right now.</span> }
+            </div>
+            </div>
         </Wrapper>
     )
 }
@@ -150,6 +169,56 @@ export default function CardList(){
 const Wrapper = styled.div`
     width:100%;
     margin-top:2rem;
+
+    .body{
+        display:flex;
+        position:relative;
+    }
+
+    .body-right{
+        width:50%;
+        height:calc(100vh - 3.75rem);
+        background:#f4f4f4;
+        position:sticky;
+        border-radius:.5rem;
+        right:0;
+        top:2rem;
+        overflow:hidden;
+        display:none;
+        box-shadow:inset 0 0 10px rgb(0,0,0,0.02);
+
+        @media(min-width:1200px){
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+
+            .map{
+                font-size:7rem;
+                color:#ddd !important;
+            }
+            .nomap-msg{
+                margin-top:.5rem;
+                font-size:.9rem;
+            }
+        }
+
+        img{
+            height:100%;
+            width:150%;
+            object-fit:cover;
+        }
+    }
+
+    .body-left{
+        width:100%;
+        display:flex;
+        flex-direction:column;
+
+        @media(min-width:1200px){
+            width:50%;
+        }
+    }
 
     .loading{
         width:100%;
@@ -187,8 +256,8 @@ const Wrapper = styled.div`
         display:flex;
         justify-content:space-between;
 
-        @media(min-width:800px){
-            justify-content:flex-start;
+        @media(min-width:1200px){
+            padding-right:1rem;
         }
 
         .search-bar{
@@ -256,9 +325,10 @@ const Wrapper = styled.div`
         margin-top:1.5rem;
         display:flex;
         flex-direction:column;
+        width:100%;
 
         @media(min-width:600px){
-            flex-direction:row;
+            flex-direction:column;
             flex-wrap:wrap;
         }
 
@@ -273,7 +343,11 @@ const Wrapper = styled.div`
 
             @media(min-width:800px){
                 margin-bottom:1.5rem;
-                width:50%;
+                padding-right:1rem;
+            }
+
+            @media(min-width:1200px){
+                padding-right:1rem;
             }
 
             &:hover{

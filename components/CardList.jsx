@@ -16,6 +16,21 @@ export default function CardList(){
     const [nearActive, setNearActive] = useState(false)
     const [loadingNew, setLoadingNew] = useState(false)
 
+    const searchTambalban = async (e) => {
+        e.preventDefault()
+        const query = e.currentTarget.elements.query.value
+
+        if(query){
+            setLoadingNew(true)
+            const { data } = await axios.get(`/api/tambalban/find?q=${query}`)
+
+            if(data){
+                setLoadingNew(false)
+                setList(data)
+            }
+        }
+    }
+
     const getCoords = (position) => {
         setMyCoor([position.coords.longitude, position.coords.latitude])
         setNearActive(true)
@@ -77,10 +92,10 @@ export default function CardList(){
                 <span><FaSearch/></span>
             </div> */}
             <div className="head">
-                <div className="search-bar">
-                    <input type="text" placeholder="Lagi dimana?"/>
+                <form className="search-bar" onSubmit={searchTambalban}>
+                    <input name="query" type="text" placeholder="Lagi dimana?"/>
                     <span><FaSearch/></span>
-                </div>
+                </form>
                 <div className="filters">
                     <div className={`filter ${nearActive ? 'active' : ''}`} onClick={() => findMyLocation()}>Cari Terdekat</div>
                 </div>

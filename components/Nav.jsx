@@ -5,7 +5,7 @@ export default function Nav(){
     return(
         <Wrapper>
             <span className="icon"><RiMapPinAddFill/></span>
-            <h1>Tambal<span>.in</span></h1>
+            <a href="/"><h1>Tambal<span>.in</span></h1></a>
         </Wrapper>
     )
 }

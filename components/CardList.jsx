@@ -278,7 +278,9 @@ const Wrapper = styled.div`
 
             &:hover{
                 .image{
-                    filter:brightness(1.1);
+                    img{
+                        filter:brightness(1.1);
+                    }
                 }
             }
 

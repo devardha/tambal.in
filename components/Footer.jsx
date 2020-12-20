@@ -4,7 +4,8 @@ export default function Footer(){
     return(
         <Wrapper>
             <div className="kota-dijangkau">
-                <span className="text">1 Kota terjangkau: </span><span className="city-name">Semarang</span>
+                {/* <span className="text">1 Kota terjangkau: </span> */}
+                <span className="city-name">Semarang</span>
             </div>
             <p>Dibuat dengan penuh cinta oleh <a href="https://github.com/devardha" target="_blank">@devardha</a></p>
         </Wrapper>
@@ -14,7 +15,7 @@ export default function Footer(){
 const Wrapper = styled.footer`
     max-width:512px;
     margin: auto;
-    padding:2rem 0 1rem 0;
+    padding:4rem 0 1rem 0;
 
     .kota-dijangkau{
         display:flex;

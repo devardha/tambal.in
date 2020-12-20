@@ -6,6 +6,7 @@ import { FaSearch } from 'react-icons/fa'
 import axios from 'axios'
 import { useEffect } from 'react'
 import ListSkeleton from './ListSkeleton'
+import { AiFillPicture } from 'react-icons/ai'
 
 export default function CardList(){
     const [detail, setDetail] = useContext(DetailContext)
@@ -100,7 +101,11 @@ export default function CardList(){
                                     return(
                                         <li key={index} onClick={() => setDetail(detail ? null : item)}>
                                             <div className="image">
-                                                <img src={item.picture}/>
+                                                {
+                                                    item.picture ? (
+                                                        <img src={item.picture}/>
+                                                    ) : <AiFillPicture/>
+                                                }
                                             </div>
                                             <div className="details">
                                                 <span className="title">{item.address}</span>
@@ -269,6 +274,11 @@ const Wrapper = styled.div`
                 background:#f4f4f4;
                 border-radius:.5rem;
                 position:relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 4rem;
+                color: #ddd;
 
                 @media(min-width:800px){
                     height:150px;

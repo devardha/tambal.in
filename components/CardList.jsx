@@ -16,7 +16,7 @@ export default function CardList(){
     const [myCoor, setMyCoor] = useState()
     const [nearActive, setNearActive] = useState(false)
     const [loadingNew, setLoadingNew] = useState(false)
-    const mapactive = false
+    const mapactive = true
 
     const searchTambalban = async (e) => {
         e.preventDefault()
